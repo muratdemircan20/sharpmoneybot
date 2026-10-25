@@ -1,0 +1,27 @@
+name: Sharp Money Bot Otomasyonu
+
+on:
+  schedule:
+    # Her 2 saatte bir otomatik çalışır
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # İstersen butona basıp manuel de çalıştırabilirsin
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodları Repo'dan Çek
+        uses: actions/checkout@v4
+
+      - name: Python Ortamını Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Gerekli Kütüphaneleri Yükle (Requests)
+        run: |
+          pip install requests
+
+      - name: Botu Çalıştır
+        run: |
+          python bot.py
