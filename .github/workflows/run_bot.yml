@@ -1,27 +1,26 @@
-name: Sharp Money Bot Otomasyonu
+name: Run Sharp Money Bot
 
 on:
+  workflow_dispatch: # Elle test etme butonu yine kalsın
   schedule:
-    # Her 2 saatte bir otomatik çalışır
-    - cron: '0 */2 * * *'
-  workflow_dispatch: # İstersen butona basıp manuel de çalıştırabilirsin
+    - cron: '0 */2 * * *' # Her 2 saatte bir otomatik çalıştırır (Örn: 00:00, 02:00, 04:00...)
 
 jobs:
-  run-bot:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Kodları Repo'dan Çek
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Python Ortamını Kur
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Gerekli Kütüphaneleri Yükle (Requests)
+      - name: Install dependencies
         run: |
           pip install requests
 
-      - name: Botu Çalıştır
+      - name: Run bot
         run: |
           python bot.py
