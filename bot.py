@@ -117,7 +117,7 @@ def check_odds():
                                 avg_price = sum(matching_prices) / len(matching_prices)
                                 # %2.5 ve üzeri piyasa sapması kontrolü
                                 deviation = ((avg_price - pin_price) / pin_price) * 100
-                                if abs(deviation) >= 2.5:
+                                if (deviation) >= 2.5:
                                     msg = (
                                         f"🚨 *Sharp Money Sinyali!* 🚨\n\n"
                                         f"🏆 *Lig:* {league}\n"
